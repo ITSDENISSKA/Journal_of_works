@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p style="color: darkgray">И на Марсе будут яблони цвести!</p>
+	<h2 style="text-align: center;">Works log</h2>
+	{% for index in range(length) %}
+		<h2>Action # {{ index + 1 }}</h2>
+		<div class="col-md6 border rounded">
+			<table class="table">
+				<thead class="thead-dark">
+				<tr>
+					<td>Title of activity</td>
+					<td>Team leader</td>
+					<td>Duration</td>
+					<td>List of collaborators</td>
+					<td>Is finished</td>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>{{ jobs[index].job }}</td>
+					<td>{{ jobs[index].user.surname }} {{ jobs[index].user.name }}</td>
+					<td>{{ jobs[index].work_size }} hours</td>
+					<td>{{ jobs[index].collaborators }}</td>
+					{% if jobs[index].is_finished == True %}
+					<td>Is not finished</td>
+					{% else %}
+					<td>Is finished</td>
+					{% endif %}
+				</tr>
+			</table>
+		</div>
+	{% endfor %}
+{% endblock %}
