@@ -1,11 +1,18 @@
-import datetime
+from requests import get, post, delete
 
-from requests import get, post
+# РАБОЧИЕ
+print(get("http://127.0.0.1:5003/api/v2/users").json())
+print(get("http://127.0.0.1:5003/api/v2/user/1").json())
+print(post("http://127.0.0.1:5003/api/v2/users", json={'surname': "Бушенев",
+                                                       'name': "Сава",
+                                                       'age': 2,
+                                                       'position': "раб",
+                                                       "speciality": "хлопковые поля",
+                                                       "address": "ленина 72",
+                                                       "email": "суперпро11123111@1гмэил.ру",
+                                                       "password": "суперпро"}).json())
+print(delete("http://127.0.0.1:5003/api/v2/user/4").json())
 
-print(post('http://127.0.0.1:5003/api/jobs', json={
-    'team_leader': 1,
-    'job': 'послушать гс в тг',
-    'work_size': 15,
-    'collaborators': '2, 5',
-    'is_finished': False,
-    'team_leader_id': 2, }).json())
+# ОШИБКИ ВЫДАЮТ
+print(get("http://127.0.0.1:5003/api/v2/user/111").json())
+print(delete("http://127.0.0.1:5003/api/v2/user/411").json())
